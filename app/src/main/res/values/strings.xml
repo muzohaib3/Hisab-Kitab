@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HisaabKitaab</string>
+    <string name="retrofit_request_method_type"> Method </string>
+    <string name="retrofit_logging_response">Received response for %s in %.1fms%n%s</string>
+    <string name="retrofit_logging_request">Sending request %s on %s%n%s%s</string>
+    <string name="bank_bills">Bank Biils</string>
+    <string name="utility_bills">Utility Bills</string>
+    <string name="electricity_bills">Electricity Bills</string>
+    <string name="committee_count">Committee Bills</string>
+    <string name="billing_profile">Billing Profile</string>
+    <string name="total_units">Total Units</string>
+    <string name="enter_reading">Enter meter reading</string>
+    <string name="select_date">Select Date</string>
+    <string name="Total_unit_today">Total Units Today</string>
+    <string name="add_reading">Add Meter Reading</string>
+</resources>
