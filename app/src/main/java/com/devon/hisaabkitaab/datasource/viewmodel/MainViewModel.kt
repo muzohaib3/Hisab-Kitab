@@ -22,4 +22,11 @@ class MainViewModel(private val repository: GeneralRepository):ViewModel()
         }
     }
 
+    fun updateMeterReading(date:String,meter_reading:String,total_no_count:String,id:Int ){
+        viewModelScope.launch(Dispatchers.IO) {
+            println("The viewModelScope function is called")
+            repository.updateMeterReadings(date, meter_reading, total_no_count, id)
+        }
+    }
+
 }

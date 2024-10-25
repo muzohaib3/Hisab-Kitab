@@ -1,6 +1,7 @@
 package com.devon.hisaabkitaab.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devon.hisaabkitaab.R
 import com.devon.hisaabkitaab.database.MeterReadingModel
 import com.devon.hisaabkitaab.databinding.MeterReadingViewBinding
+import com.devon.hisaabkitaab.screens.electricity.AddMeterReadingActivity
+import com.devon.hisaabkitaab.utils.click
 
 class MeterListAdapter(
     private val context: Context,
@@ -27,11 +30,26 @@ class MeterListAdapter(
         val data= list[position]
         with(holder)
         {
-            binding.tvDate.text = data.date
-            binding.tvReadingNo.text = data.meter_reading
-            binding.tvTotalCount.text = data.total_no_count
+            binding.tvDate.text = "date : ${data.date}"
+            binding.tvReadingNo.text = "meter reading : ${data.meter_reading}"
+            binding.tvTotalCount.text = "total unit : ${data.total_no_count}"
+            var id  = data.id
+
+
+            binding.btEditMetrReading.click {
+                AddOrEditMeterReading("edit",id)
+                println("The id of view is $id")
+            }
         }
     }
-    //
+
     override fun getItemCount(): Int = list.size
+
+    private fun AddOrEditMeterReading(screen:String,id:Int){
+        val intent = Intent(context, AddMeterReadingActivity::class.java)
+        intent.putExtra("edit",screen)
+        intent.putExtra("view_id",id)
+        context.startActivity(intent)
+    }
+
 }

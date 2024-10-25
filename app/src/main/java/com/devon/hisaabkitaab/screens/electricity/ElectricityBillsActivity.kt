@@ -1,5 +1,6 @@
 package com.devon.hisaabkitaab.screens.electricity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.devon.hisaabkitaab.databinding.ActivityElectricityBillsBinding
 import com.devon.hisaabkitaab.datasource.viewmodel.MainViewModel
 import com.devon.hisaabkitaab.utils.click
 import com.devon.hisaabkitaab.utils.gotoActivity
+import com.devon.hisaabkitaab.utils.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ElectricityBillsActivity : AppCompatActivity() {
@@ -27,9 +29,10 @@ class ElectricityBillsActivity : AppCompatActivity() {
     private fun onClickViews(){
 
         binding.btAddMeterReading.click {
-            gotoActivity(AddMeterReadingActivity::class.java)
+            val intent = Intent(this, AddMeterReadingActivity::class.java)
+            intent.putExtra("add","add")
+            startActivity(intent)
         }
-        fetchList()
 
     }
 

@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:paddingBottom="10dp"
     android:layout_margin="5dp"
+    android:background="@drawable/blue_squared_rounded_bg"
     android:elevation="10dp"
-    android:background="@drawable/blue_squared_rounded_bg">
+    android:paddingStart="20dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="10dp">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btEditMetrReading"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/pink_rounded_bg"
+        android:padding="14dp"
+        android:src="@drawable/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
 
     <TextView
         android:id="@+id/tvReadingNo"
@@ -19,8 +32,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,26 +40,23 @@
         android:id="@+id/tvTotalCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:text=""
-        android:layout_marginTop="5dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvReadingNo"/>
+        app:layout_constraintTop_toBottomOf="@id/tvReadingNo" />
 
     <TextView
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:layout_marginTop="3dp"
         android:text=""
+        android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTotalCount"/>
-
+        app:layout_constraintTop_toBottomOf="@id/tvTotalCount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

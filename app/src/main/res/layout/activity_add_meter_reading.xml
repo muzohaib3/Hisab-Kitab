@@ -35,6 +35,7 @@
             android:padding="10dp"
             android:hint="@string/enter_reading"/>
 
+
         <EditText
             android:id="@+id/etDate"
             android:layout_width="match_parent"
