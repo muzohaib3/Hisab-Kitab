@@ -121,16 +121,6 @@ class AddMeterReadingActivity : AppCompatActivity() {
 
     private fun editReadingProcess(id:Int){
 
-
-        scope.launch {
-            val data = viewModel.selectById(id)
-            var mReading = data.meter_reading
-            var mDate = data.date
-            var mCount = data.total_no_count
-
-            println("The values are addMeterReading >> $mReading $mDate $mCount")
-        }
-
         var meterReading = binding.etMeterReading.text.toString()
 //        var date = binding.etDate.text.toString()
         var totalUnit = binding.etUnitCount.text.toString()
@@ -140,15 +130,12 @@ class AddMeterReadingActivity : AppCompatActivity() {
             meterReading.isNullOrEmpty()->{
                 toast("meterReading missing")
             }
-//            date.isNullOrEmpty()->{
-//                toast("date missing")
-//            }
             totalUnit.isNullOrEmpty()->{
                 toast("totalUnit missing")
             }
             else->{
                 println("converted date is ${stringToDate(selectedDate)}")
-                editMeterReading(id,meterReading,selectedDate,totalUnit)
+                editMeterReading(id,selectedDate,totalUnit ,meterReading)
                 progressDialog(this).show(true)
                 toast("updated")
                 finish()

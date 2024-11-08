@@ -16,6 +16,7 @@ class ElectricityBillsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityElectricityBillsBinding
     private val viewModel: MainViewModel by viewModel()
+    private lateinit var meterListAdapter: MeterListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +46,11 @@ class ElectricityBillsActivity : AppCompatActivity() {
     {
         viewModel.fetchAllReadings { data->
 
+            meterListAdapter = MeterListAdapter(this@ElectricityBillsActivity,data as MutableList)
             if (binding.rvMeterReading != null) {
                 runOnUiThread {
                     binding.rvMeterReading.apply {
-                        adapter = MeterListAdapter(this@ElectricityBillsActivity,data as MutableList)
+                        adapter = meterListAdapter
                         layoutManager = LinearLayoutManager(this@ElectricityBillsActivity)
                     }
                     binding.rvMeterReading.adapter?.notifyDataSetChanged()
@@ -65,8 +67,5 @@ class ElectricityBillsActivity : AppCompatActivity() {
         fetchList()
     }
 
-    private fun initViews(){
-
-    }
 
 }

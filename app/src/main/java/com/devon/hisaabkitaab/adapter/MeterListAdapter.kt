@@ -16,6 +16,8 @@ import com.devon.hisaabkitaab.extensions.click
 import com.devon.hisaabkitaab.extensions.makeGone
 import com.devon.hisaabkitaab.extensions.makeVisible
 import com.devon.hisaabkitaab.screens.electricity.ElectricityBillsActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MeterListAdapter(
@@ -57,29 +59,33 @@ class MeterListAdapter(
                     binding.btDeleteMetrReading.makeVisible()
 
                     val index = data.id
-                    var totalMeterCount = data.total_no_count
-                    sumOfMeterReading(totalMeterCount.toInt())
+//                    var totalMeterCount = data.total_no_count
+//                    var totalsum = sumOfMeterReading(totalMeterCount.toInt())
+//                    println("value of sum is >> $totalsum")
 
-                    when(index)
-                    {
+                    when(index) {
+
                         0->{
                             binding.btDeleteMetrReading.click {
                                 println("it comes here >> 2")
                                 Toast.makeText(context, "Item can't be deleted", Toast.LENGTH_SHORT).show()
                             }
                         }
+
                         null->{
                             binding.btDeleteMetrReading.click {
                                 println("it comes here >> 3")
                                 Toast.makeText(context, "Item can't be deleted", Toast.LENGTH_SHORT).show()
                             }
                         }
+
                         else->{
                             binding.btDeleteMetrReading.click {
                                 println("it comes here >> 4")
                                 (context as ElectricityBillsActivity).deleteItem(data.id)
                             }
                         }
+
                     }
 
                 }
@@ -90,7 +96,6 @@ class MeterListAdapter(
                 }
                 true
             }
-
         }
     }
 
@@ -114,11 +119,8 @@ class MeterListAdapter(
     }
 
     fun sumOfMeterReading(totalCount:Int):Int{
-
-        var sum = 0
         sum += totalCount
         return sum
-
     }
 
 }
