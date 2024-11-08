@@ -6,6 +6,7 @@
     <string name="bank_bills">Bank Biils</string>
     <string name="utility_bills">Utility Bills</string>
     <string name="electricity_bills">Electricity Bills</string>
+    <string name="home">Home</string>
     <string name="committee_count">Committee Bills</string>
     <string name="billing_profile">Billing Profile</string>
     <string name="total_units">Total Units</string>
@@ -13,4 +14,16 @@
     <string name="select_date">Select Date</string>
     <string name="Total_unit_today">Total Units Today</string>
     <string name="add_reading">Add Meter Reading</string>
+    <string name="loading_message">Loading</string>
+
+    <string-array name="months">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
 </resources>

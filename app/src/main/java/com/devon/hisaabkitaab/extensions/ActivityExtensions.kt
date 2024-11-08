@@ -1,6 +1,7 @@
-package com.devon.hisaabkitaab.utils
+package com.devon.hisaabkitaab.extensions
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -23,6 +24,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.devon.hisaabkitaab.R
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 fun <T : AppCompatActivity> AppCompatActivity.gotoActivity(targetActivityClass: Class<T>) {
     val intent = Intent(this, targetActivityClass)
@@ -272,3 +276,44 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
 
 val Context.layoutInflater : LayoutInflater
     get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+fun  stringToDate(date:String):SimpleDateFormat{
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+    try {
+        val dateFormat = dateFormat.parse(date)
+        // Use the parsed date object as needed
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+    return dateFormat
+}
+
+fun setToolbar(
+    activity: Activity?,
+    title: String = "",
+    hasUpEnabled: Boolean = true,
+    show: Boolean = true
+) {
+    if (activity is AppCompatActivity) {
+        if (show) {
+            activity.supportActionBar?.title = title
+            activity.supportActionBar?.setDisplayHomeAsUpEnabled(hasUpEnabled)
+            activity.supportActionBar?.show()
+        } else activity.supportActionBar?.hide()
+    }
+}
+
+fun progressDialog(
+    context: Context?,
+    message: String? = context?.resources?.getString(R.string.loading_message)
+): ProgressDialog {
+    val dialog = ProgressDialog(context)
+    dialog.setCancelable(false)
+    dialog.setMessage(message)
+    return dialog
+}
+
+fun ProgressDialog.show(show: Boolean) {
+    if (show) this.show()
+    else this.dismiss()
+}

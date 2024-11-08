@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.devon.hisaabkitaab.R
 import com.devon.hisaabkitaab.adapter.MeterListAdapter
 import com.devon.hisaabkitaab.databinding.ActivityElectricityBillsBinding
 import com.devon.hisaabkitaab.datasource.viewmodel.MainViewModel
-import com.devon.hisaabkitaab.utils.click
-import com.devon.hisaabkitaab.utils.gotoActivity
-import com.devon.hisaabkitaab.utils.toast
+import com.devon.hisaabkitaab.extensions.click
+import com.devon.hisaabkitaab.extensions.setToolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ElectricityBillsActivity : AppCompatActivity() {
@@ -22,6 +22,7 @@ class ElectricityBillsActivity : AppCompatActivity() {
         binding = ActivityElectricityBillsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        setToolbar(this, getString(R.string.electricity_bills))
 
         onClickViews()
     }
@@ -33,7 +34,6 @@ class ElectricityBillsActivity : AppCompatActivity() {
             intent.putExtra("add","add")
             startActivity(intent)
         }
-
     }
 
     override fun onResume() {
@@ -45,12 +45,28 @@ class ElectricityBillsActivity : AppCompatActivity() {
     {
         viewModel.fetchAllReadings { data->
 
-            runOnUiThread {
-                binding.rvMeterReading.apply {
-                    adapter = MeterListAdapter(this@ElectricityBillsActivity,data)
-                    layoutManager = LinearLayoutManager(this@ElectricityBillsActivity)
+            if (binding.rvMeterReading != null) {
+                runOnUiThread {
+                    binding.rvMeterReading.apply {
+                        adapter = MeterListAdapter(this@ElectricityBillsActivity,data as MutableList)
+                        layoutManager = LinearLayoutManager(this@ElectricityBillsActivity)
+                    }
+                    binding.rvMeterReading.adapter?.notifyDataSetChanged()
                 }
+            }
+            else{
+                (binding.rvMeterReading.adapter as MeterListAdapter).updateList(data)
             }
         }
     }
+
+    fun deleteItem(index:Int){
+        viewModel.deleteMReading(index)
+        fetchList()
+    }
+
+    private fun initViews(){
+
+    }
+
 }

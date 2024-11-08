@@ -18,4 +18,12 @@ interface AppDao {
     @Query("update electricity_readings set date=:date, meter_reading=:meter_reading, total_no_count=:total_no_count where id=:id")
     fun updateMeterReadings(date:String,meter_reading:String,total_no_count:String,id:Int )
 
+    @Query("delete from electricity_readings where id=:id")
+    fun deleteMReadingById(id: Int)
+
+    @Query("select * from electricity_readings where id=:index")
+    fun selectById(index:Int):MeterReadingModel
+
+
+
 }

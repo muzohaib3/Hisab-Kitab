@@ -6,6 +6,7 @@ import com.devon.hisaabkitaab.database.MeterReadingModel
 import com.devon.hisaabkitaab.datasource.repo.GeneralRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repository: GeneralRepository):ViewModel()
 {
@@ -26,6 +27,18 @@ class MainViewModel(private val repository: GeneralRepository):ViewModel()
         viewModelScope.launch(Dispatchers.IO) {
             println("The viewModelScope function is called")
             repository.updateMeterReadings(date, meter_reading, total_no_count, id)
+        }
+    }
+
+    fun deleteMReading(index:Int){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.deleteMReadingById(index)
+        }
+    }
+
+    suspend fun selectById(index: Int):MeterReadingModel{
+        return withContext(Dispatchers.IO){
+            repository.selectById(index)
         }
     }
 

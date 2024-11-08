@@ -1,18 +1,16 @@
 package com.devon.hisaabkitaab.screens
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.devon.hisaabkitaab.R
 import com.devon.hisaabkitaab.databinding.ActivityHomeBinding
 import com.devon.hisaabkitaab.screens.bank.BankBillsActivity
 import com.devon.hisaabkitaab.screens.committee.CommitteActivity
 import com.devon.hisaabkitaab.screens.electricity.ElectricityBillsActivity
 import com.devon.hisaabkitaab.screens.utility.UtilityBillsActivity
-import com.devon.hisaabkitaab.utils.click
-import com.devon.hisaabkitaab.utils.gotoActivity
+import com.devon.hisaabkitaab.extensions.click
+import com.devon.hisaabkitaab.extensions.gotoActivity
+import com.devon.hisaabkitaab.extensions.setToolbar
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -22,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        setToolbar(this, getString(R.string.home))
 
         initViews()
 

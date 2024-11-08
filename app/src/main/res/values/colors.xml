@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_blue">#3e3e70</color>
+    <color name="dark_blue">#3346AB</color>
     <color name="light_grey">#e4e4eb</color>
     <color name="peach">#FB9C6F</color>
     <color name="dark_grey">#b7b6ba</color>

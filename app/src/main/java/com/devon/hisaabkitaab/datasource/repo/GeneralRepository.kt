@@ -13,8 +13,16 @@ class GeneralRepository(private val appDao: AppDao) {
         return appDao.getAllReadings()
     }
 
-    fun updateMeterReadings(date:String,meter_reading:String,total_no_count:String,id:Int ){
+    fun updateMeterReadings(date:String,meter_reading:String,total_no_count:String,id:Int){
         println("The GeneralRepository function is called")
         appDao.updateMeterReadings(date, meter_reading, total_no_count, id)
+    }
+
+    fun deleteMReadingById(index:Int){
+        appDao.deleteMReadingById(index)
+    }
+
+    fun selectById(index: Int):MeterReadingModel{
+        return appDao.selectById(index)
     }
 }
