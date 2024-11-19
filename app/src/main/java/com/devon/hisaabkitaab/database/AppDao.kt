@@ -24,6 +24,9 @@ interface AppDao {
     @Query("select * from electricity_readings where id=:index")
     fun selectById(index:Int):MeterReadingModel
 
+    @Query("select * from electricity_readings where strftime('%Y-%m', date) =:date;")
+    fun getFilteredMeterReadingsByMonth(date: String): List<MeterReadingModel>
+
 
 
 }

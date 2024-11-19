@@ -42,9 +42,9 @@ class MainViewModel(private val repository: GeneralRepository):ViewModel()
         }
     }
 
-    suspend fun getTotalMeterUnitCount(value:Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            var countValue = value
+    suspend fun getMeterReadingSelectedByMonth(month:String):List<MeterReadingModel>{
+        return withContext(Dispatchers.IO){
+            repository.getMeterReadingSelectedByMonth(month)
         }
     }
 

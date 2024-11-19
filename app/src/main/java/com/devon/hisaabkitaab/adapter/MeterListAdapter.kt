@@ -33,7 +33,8 @@ class MeterListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.meter_reading_view, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.meter_reading_view,
+            parent, false)
         return ViewHolder(view)
     }
 
@@ -52,42 +53,28 @@ class MeterListAdapter(
             }
             binding.llElectricityBills.setOnLongClickListener { it->
 
-                if(itemFlag == 0) {
+                (context as ElectricityBillsActivity).setValueOfSum(sumOfMeterReading(data.total_no_count.toInt()))
 
+                if(itemFlag == 0) {
                     itemFlag = 1
                     it.setBackgroundResource(R.drawable.yellow_rounded_bg)
                     binding.btDeleteMetrReading.makeVisible()
 
                     val index = data.id
-//                    var totalMeterCount = data.total_no_count
-//                    var totalsum = sumOfMeterReading(totalMeterCount.toInt())
-//                    println("value of sum is >> $totalsum")
-
                     when(index) {
-
                         0->{
                             binding.btDeleteMetrReading.click {
                                 println("it comes here >> 2")
                                 Toast.makeText(context, "Item can't be deleted", Toast.LENGTH_SHORT).show()
                             }
                         }
-
-                        null->{
-                            binding.btDeleteMetrReading.click {
-                                println("it comes here >> 3")
-                                Toast.makeText(context, "Item can't be deleted", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
                         else->{
                             binding.btDeleteMetrReading.click {
                                 println("it comes here >> 4")
                                 (context as ElectricityBillsActivity).deleteItem(data.id)
                             }
                         }
-
                     }
-
                 }
                 else{
                     itemFlag = 0

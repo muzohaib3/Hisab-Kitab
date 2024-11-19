@@ -79,6 +79,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("com.jakewharton.threetenabp:threetenabp:1.2.1")
 
+    implementation("com.github.tejpratap46:PDFCreatorAndroid:3.0.2")
+
 
 
 }

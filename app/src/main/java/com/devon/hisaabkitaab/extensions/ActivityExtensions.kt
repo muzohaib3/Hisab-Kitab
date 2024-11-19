@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.text.Editable
 import android.util.Base64.DEFAULT
 import android.util.Base64.decode
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.devon.hisaabkitaab.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Date
 
 fun <T : AppCompatActivity> AppCompatActivity.gotoActivity(targetActivityClass: Class<T>) {
     val intent = Intent(this, targetActivityClass)
@@ -316,4 +318,18 @@ fun progressDialog(
 fun ProgressDialog.show(show: Boolean) {
     if (show) this.show()
     else this.dismiss()
+}
+
+fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+fun currentDate(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    val currentDate = Date()
+    return dateFormat.format(currentDate)
+}
+
+fun currentMonthYear(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM")
+    val currentDate = Date()
+    return dateFormat.format(currentDate)
 }

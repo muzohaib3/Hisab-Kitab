@@ -25,4 +25,9 @@ class GeneralRepository(private val appDao: AppDao) {
     fun selectById(index: Int):MeterReadingModel{
         return appDao.selectById(index)
     }
+
+    fun getMeterReadingSelectedByMonth(index: String):List<MeterReadingModel>{
+        return appDao.getFilteredMeterReadingsByMonth(index)
+    }
+
 }

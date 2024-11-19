@@ -46,17 +46,18 @@
                 app:layout_constraintStart_toEndOf="@id/tvToolbar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:text="100"/>
 
-            <Spinner
-                android:id="@+id/spFilter"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btGeneratePDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/pink_squared_bg"
                 android:entries="@array/months"
-                android:padding="10dp"
-                android:text="filter"
+                android:padding="3dp"
+                android:text="generate pdf"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

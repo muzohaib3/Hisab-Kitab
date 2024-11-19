@@ -37,6 +37,7 @@
             android:background="@drawable/grey_squared_rounded_bg"
             android:layout_marginTop="50dp"
             android:padding="10dp"
+            android:inputType="number"
             android:hint="@string/enter_reading"/>
 
 
@@ -66,6 +67,7 @@
             android:background="@drawable/grey_squared_rounded_bg"
             android:layout_marginTop="20dp"
             android:padding="10dp"
+            android:inputType="number"
             android:hint="@string/Total_unit_today"/>
 
         <androidx.appcompat.widget.AppCompatButton

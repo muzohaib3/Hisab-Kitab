@@ -8,10 +8,12 @@ import com.devon.hisaabkitaab.database.MeterReadingModel
 import com.devon.hisaabkitaab.databinding.ActivityAddMeterReadingBinding
 import com.devon.hisaabkitaab.datasource.viewmodel.MainViewModel
 import com.devon.hisaabkitaab.extensions.click
+import com.devon.hisaabkitaab.extensions.currentMonthYear
 import com.devon.hisaabkitaab.extensions.progressDialog
 import com.devon.hisaabkitaab.extensions.setToolbar
 import com.devon.hisaabkitaab.extensions.show
 import com.devon.hisaabkitaab.extensions.stringToDate
+import com.devon.hisaabkitaab.extensions.toEditable
 import com.devon.hisaabkitaab.extensions.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +41,7 @@ class AddMeterReadingActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         onClickItems()
+        println("currentMonthYear() >> ${currentMonthYear()}")
     }
 
     private fun onClickItems(){
@@ -81,7 +84,6 @@ class AddMeterReadingActivity : AppCompatActivity() {
 
             try {
                 var readingData = binding.etMeterReading.text.toString()
-//                var date = binding.etDate.text.toString()
                 var totalCount = binding.etUnitCount.text.toString()
 
                 when
@@ -89,28 +91,22 @@ class AddMeterReadingActivity : AppCompatActivity() {
                     readingData.isNullOrEmpty()->{
                         toast("readingData missing")
                     }
-//                    date.isNullOrEmpty()->{
-//                        toast("date missing")
-//                    }
 
                     totalCount.isNullOrEmpty()->{
                         toast("totalCount missing")
                     }
                     else->{
                         println("converted date is ${stringToDate(selectedDate)}")
-//                        var convertedDate = stringToDate(selectedDate)
-                        val meterReading = MeterReadingModel(selectedDate,readingData,totalCount)
+                        val meterReading = MeterReadingModel(selectedDate,readingData,totalCount,"" )
                         viewModel.insertReading(meterReading)
                         progressDialog(this).show(true)
                         finish()
                     }
                 }
-
-            }catch (e:Exception)
-            {
+            }
+            catch (e:Exception) {
                 println("The exception => ${exception.message}")
             }
-
 
         }.onFailure {
 
@@ -121,8 +117,20 @@ class AddMeterReadingActivity : AppCompatActivity() {
 
     private fun editReadingProcess(id:Int){
 
+        scope.launch {
+
+            val fetchedData = viewModel.selectById(id)
+            var total_no_count = fetchedData.total_no_count
+            var meter_reading = fetchedData.meter_reading
+            var date = fetchedData.date
+
+            runOnUiThread {
+
+                binding.etMeterReading.text = total_no_count.toEditable()
+            }
+        }
+
         var meterReading = binding.etMeterReading.text.toString()
-//        var date = binding.etDate.text.toString()
         var totalUnit = binding.etUnitCount.text.toString()
 
         when
@@ -157,11 +165,16 @@ class AddMeterReadingActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
-                selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                selectedDate = "$selectedYear-$selectedDay-${selectedMonth + 1}"
                 binding.tvDate.text = "$selectedDay/${selectedMonth + 1}/$selectedYear"
             }, year, month, day)
         datePickerDialog.show()
+
     }
 
+    private fun getAllFieldsHints(){
+
+        val getData = viewModel
+    }
 
 }
